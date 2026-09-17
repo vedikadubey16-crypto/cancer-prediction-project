@@ -1,6 +1,9 @@
 
 import streamlit as st
 import requests
+import os
+
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 st.title("Cancer Cell Prediction")
 
@@ -79,8 +82,8 @@ if st.button("Predict"):
     }
 
     response = requests.post(
-        "http://127.0.0.1:8000/predict",
-        json=data
+    f"{API_URL}/predict",
+    json=data
     )
 
     if response.status_code == 200:
